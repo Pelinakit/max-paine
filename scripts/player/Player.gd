@@ -128,6 +128,7 @@ func game_over():
 		add_child(audio)
 		audio.play()
 		audio.finished.connect(func(): audio.queue_free())
+		Global.transition_to_main_menu()
 	)
 
 func shoot():

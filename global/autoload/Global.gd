@@ -8,11 +8,28 @@ var score_per_second = 0.0
 const BASE_SIZE_PENALTY = -10 # Points per second penalty for base size yeasts
 const WIN_SCORE = 1000
 
+var party_trumpet = preload("res://assets/sounds/party_trumpet.wav")
+
 func reset_game():
 	player_score = 0
 	player_health = 100
 	level_number = 1
 	score_per_second = 0.0
+
+func transition_to_main_menu():
+	if player_score >= WIN_SCORE:
+		var audio = AudioStreamPlayer.new()
+		audio.stream = party_trumpet
+		audio.volume_db = -20.0
+		add_child(audio)
+		audio.play()
+		audio.finished.connect(func(): audio.queue_free())
+	
+	var timer = get_tree().create_timer(3.0)
+	timer.timeout.connect(func():
+		get_tree().paused = false
+		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	)
 
 func calculate_score_rate(yeasts: Array) -> float:
 	var total = 0.0
@@ -39,6 +56,7 @@ func calculate_score_rate(yeasts: Array) -> float:
 		if player_score >= WIN_SCORE:
 			player_score = WIN_SCORE
 			get_tree().paused = true
+			transition_to_main_menu()
 	elif player_score > 0:
 		# If we would go negative, just go to zero
 		player_score = 0
