@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://ciege05sug6sp"]
+[gd_scene load_steps=4 format=3 uid="uid://bonrethm1p2x7"]
 
 [ext_resource type="Script" path="res://scripts/objects/Sugar.gd" id="1_v5djt"]
 [ext_resource type="Texture2D" uid="uid://bmisbl85jgf8v" path="res://assets/sprites/Sugar_Cube.png" id="2_wtdsb"]
