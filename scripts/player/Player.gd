@@ -8,6 +8,7 @@ extends CharacterBody2D
 @export var right_limit = 1000
 
 var Sugar = preload("res://scenes/objects/Sugar.tscn")
+var slide_whistle = preload("res://assets/sounds/slide_whistle.wav")
 @export var shoot_cooldown = 0.2
 var can_shoot = true
 
@@ -61,10 +62,16 @@ func game_over():
 	get_tree().paused = true
 	Global.player_health = 0
 	
-	# Add delayed width scaling
+	# Add delayed width scaling with sound
 	var timer = get_tree().create_timer(2.0)
 	timer.timeout.connect(func():
-		scale.x = 2
+		scale.x = 2.0
+		var audio = AudioStreamPlayer.new()
+		audio.stream = slide_whistle
+		audio.volume_db = -20.0
+		add_child(audio)
+		audio.play()
+		audio.finished.connect(func(): audio.queue_free())
 	)
 
 func shoot():
