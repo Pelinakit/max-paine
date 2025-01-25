@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://p0l6d2cw0ssi"]
+[gd_scene load_steps=11 format=3 uid="uid://bluoq1mk0ja6r"]
 
 [ext_resource type="FontFile" uid="uid://b5b8f4mn203jq" path="res://assets/fonts/CALIFB.TTF" id="1_naksn"]
 [ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_ve478"]
@@ -41,9 +41,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -275.0
-offset_top = -5.0
+offset_top = 102.0
 offset_right = 275.0
-offset_bottom = 140.0
+offset_bottom = 247.0
 grow_horizontal = 2
 grow_vertical = 2
 
