@@ -16,7 +16,8 @@ var amplitude_variation_freq: float
 var phase_offset: float
 
 func _ready():
-	body_entered.connect(_on_body_entered)
+	if !body_entered.is_connected(_on_body_entered):
+		body_entered.connect(_on_body_entered)
 	# Speed is inversely proportional to scale
 	# Smaller bubbles move faster
 	speed = base_speed / scale.x
