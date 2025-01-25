@@ -4,6 +4,13 @@ extends Node2D
 var Yeast = preload("res://scenes/enemies/Yeast.tscn")
 
 func _ready():
+	# Position floor at bottom of background plus 20px
+	var bg_sprite = $Background/Sprite2D
+	var floor_node = $Background/Floor
+	if bg_sprite and bg_sprite.texture:
+		var bg_height = bg_sprite.texture.get_height()
+		floor_node.position.y = bg_height / 2 - 40
+	
 	spawn_yeasts()
 
 func spawn_yeasts():
