@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/player/Player.gd" id="1_itm0q"]
 [ext_resource type="PackedScene" uid="uid://bwnm2xnqpkrun" path="res://scenes/objects/Rope.tscn" id="1_nstsc"]
 [ext_resource type="PackedScene" uid="uid://ct8u5bf1k3o20" path="res://scenes/objects/SugarGun.tscn" id="2_ajw2n"]
-[ext_resource type="PackedScene" uid="uid://ciege05sug6sp" path="res://scenes/objects/Sugar.tscn" id="5_aioh2"]
+[ext_resource type="PackedScene" uid="uid://bonrethm1p2x7" path="res://scenes/objects/Sugar.tscn" id="5_aioh2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xrin8"]
 size = Vector2(63, 213)
