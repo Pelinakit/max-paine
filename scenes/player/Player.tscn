@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://lxi8o2c6m1bt"]
+
+[ext_resource type="PackedScene" uid="uid://bwnm2xnqpkrun" path="res://scenes/objects/Rope.tscn" id="1_nstsc"]
+[ext_resource type="PackedScene" uid="uid://ct8u5bf1k3o20" path="res://scenes/objects/SugarGun.tscn" id="2_ajw2n"]
+
+[node name="Player" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Rope" parent="." instance=ExtResource("1_nstsc")]
+
+[node name="SugarGun" parent="." instance=ExtResource("2_ajw2n")]

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://ct8u5bf1k3o20"]
+
+[node name="SugarGun" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="ShootArea" type="Area2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
