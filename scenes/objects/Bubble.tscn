@@ -9,7 +9,6 @@ radius = 8.0
 [node name="Bubble" type="Area2D"]
 collision_layer = 8
 script = ExtResource("1_bubbl")
-speed = 150.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_rijsl")
