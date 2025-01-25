@@ -6,6 +6,7 @@ var level_number = 1
 # For continuous score calculation
 var score_per_second = 0.0
 const BASE_SIZE_PENALTY = -10 # Points per second penalty for base size yeasts
+const WIN_SCORE = 1000
 
 func reset_game():
 	player_score = 0
@@ -31,8 +32,16 @@ func calculate_score_rate(yeasts: Array) -> float:
 	# Apply penalty for base size yeasts and store the true rate
 	score_per_second = total + base_size_count * BASE_SIZE_PENALTY
 	
-	# Update total score but don't let it go below zero
-	player_score = maxf(0, player_score + score_per_second)
+	# Only update score if we won't go negative
+	if player_score + score_per_second >= 0:
+		player_score += score_per_second
+		# Check for win condition
+		if player_score >= WIN_SCORE:
+			player_score = WIN_SCORE
+			get_tree().paused = true
+	elif player_score > 0:
+		# If we would go negative, just go to zero
+		player_score = 0
 	
 	# Return the true rate (can be negative)
 	return score_per_second
