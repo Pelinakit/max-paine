@@ -6,12 +6,14 @@ extends Area2D
 @export var wobble_frequency = 2.0 # Base frequency for wobble
 @export var drag_coefficient = 0.5 # How quickly lift force diminishes with speed
 @export var min_lift_factor = 0.4 # Minimum lift force multiplier (0.0 to 1.0)
+@export var attachment_duration = 2.0 # How long the bubble stays attached
 
 var speed = base_speed
 var attached_to_player = false
 var player_ref: CharacterBody2D = null
 var initial_x = 0.0 # Store initial x position for wobble
 var time_elapsed = 0.0 # Track time for wobble movement
+var attachment_time = 0.0 # Track how long the bubble has been attached
 # Secondary wobble parameters for more natural movement
 var secondary_freq: float
 var amplitude_variation_freq: float
@@ -35,16 +37,10 @@ func _ready():
 
 func _physics_process(delta):
 	if attached_to_player and player_ref:
+		# Update attachment time
+		attachment_time += delta
 		# Follow player position
 		position = player_ref.position
-		# Apply lift force to player with drag
-		var current_velocity = player_ref.velocity.y
-		# Calculate lift factor with a minimum value to ensure upward movement
-		var velocity_factor = max(
-			min_lift_factor,
-			1.0 / (1.0 + drag_coefficient * abs(min(current_velocity, 0)))
-		)
-		player_ref.velocity.y += lift_force * velocity_factor * delta
 	else:
 		# Update time for wobble
 		time_elapsed += delta
@@ -64,6 +60,10 @@ func _physics_process(delta):
 		position.x = initial_x + wobble_offset
 		position.y -= speed * delta
 
+func get_lift_factor():
+	# Return a value from 1.0 to 0.0 based on how long the bubble has been attached
+	return maxf(0.0, 1.0 - (attachment_time / attachment_duration))
+
 func _on_body_entered(body: Node2D):
 	if body is CharacterBody2D and !attached_to_player:
 		attach_to_player(body)
@@ -71,11 +71,19 @@ func _on_body_entered(body: Node2D):
 func attach_to_player(player: CharacterBody2D):
 	attached_to_player = true
 	player_ref = player
+	attachment_time = 0.0
+	# Register with player's bubble tracking
+	player_ref.add_bubble(self)
 	# Disable collision layer when attached
 	collision_layer = 0
 	# Start despawn timer
-	var timer = get_tree().create_timer(2.0)
-	timer.timeout.connect(queue_free)
+	var timer = get_tree().create_timer(attachment_duration)
+	timer.timeout.connect(func(): detach_from_player())
+
+func detach_from_player():
+	if attached_to_player and player_ref:
+		player_ref.remove_bubble(self)
+	queue_free()
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	if !attached_to_player:
@@ -88,3 +96,10 @@ func _on_area_entered(area: Area2D):
 func take_damage():
 	if !attached_to_player:
 		queue_free()
+	else:
+		detach_from_player()
+
+func _exit_tree():
+	# Make sure we remove ourselves from player when being freed
+	if attached_to_player and player_ref:
+		player_ref.remove_bubble(self)
