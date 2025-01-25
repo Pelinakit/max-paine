@@ -39,6 +39,9 @@ func start_bubble_timer():
 
 func spawn_bubble():
 	var bubble = Bubble.instantiate()
+	# Random size between 1x and 3x
+	var bubble_scale = randf_range(1.0, 3.0)
+	bubble.scale = Vector2(bubble_scale, bubble_scale)
 	# Spawn bubble from top of yeast (remember our pivot is at bottom)
 	bubble.position = position + Vector2(0, -$CollisionShape2D.shape.radius * 2 * current_size)
 	get_parent().add_child(bubble)
