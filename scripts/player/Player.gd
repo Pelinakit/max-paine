@@ -60,6 +60,12 @@ func _physics_process(delta):
 func game_over():
 	get_tree().paused = true
 	Global.player_health = 0
+	
+	# Add delayed width scaling
+	var timer = get_tree().create_timer(2.0)
+	timer.timeout.connect(func():
+		scale.x = 2
+	)
 
 func shoot():
 	can_shoot = false
