@@ -45,13 +45,21 @@ func _physics_process(delta):
 	velocity.y = lerp(velocity.y, terminal_velocity, drag_coefficient * delta)
 	velocity.y = minf(velocity.y, terminal_velocity)
 	
-	move_and_slide()
+	var collision = move_and_collide(velocity * delta)
+	if collision:
+		var collider = collision.get_collider()
+		if collider.is_in_group("floor") or collider.is_in_group("ceiling"):
+			game_over()
 	
 	# Only clamp horizontal position
 	position.x = clamp(position.x, left_limit, right_limit)
 	
 	if Input.is_action_pressed("shoot") and can_shoot:
 		shoot()
+
+func game_over():
+	get_tree().paused = true
+	Global.player_health = 0
 
 func shoot():
 	can_shoot = false

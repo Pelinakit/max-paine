@@ -11,6 +11,12 @@ func _ready():
 	if bg_sprite and bg_sprite.texture:
 		var bg_height = bg_sprite.texture.get_height()
 		floor_node.position.y = bg_height / 2 - 40
+
+	# Position ceiling at top of background minus 40px
+	var ceiling_node = $Background/Ceiling
+	if ceiling_node:
+		var bg_height = bg_sprite.texture.get_height()
+		ceiling_node.position.y = -bg_height / 2 + 40
 	
 	spawn_yeasts()
 	setup_score_timer()
