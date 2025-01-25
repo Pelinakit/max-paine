@@ -16,6 +16,9 @@ func calculate_score_rate(yeasts: Array) -> float:
 	var total = 0.0
 	for node in yeasts:
 		# Only count nodes that are yeasts (have current_size property)
-		if node.has_method("take_damage"): # This is unique to Yeast nodes
-			total += node.current_size * 100
+		if node.has_method("take_damage"):
+			# Only count growth beyond base_size (1.0)
+			var growth = node.current_size - 1.0
+			if growth > 0:
+				total += growth * 100
 	return total

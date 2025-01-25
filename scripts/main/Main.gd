@@ -5,7 +5,7 @@ var Yeast = preload("res://scenes/enemies/Yeast.tscn")
 var score_update_timer: Timer
 
 func _ready():
-	# Position floor at bottom of background plus 20px
+	# Position floor at bottom of background plus 40px
 	var bg_sprite = $Background/Sprite2D
 	var floor_node = $Background/Floor
 	if bg_sprite and bg_sprite.texture:

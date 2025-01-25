@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var growth_per_feed = 0.1
 @export var max_size = 2.0
+@export var shrink_rate = 0.05
 var current_size = 1.0
 
 var Bubble = preload("res://scenes/objects/Bubble.tscn")
@@ -11,6 +12,12 @@ func _ready():
 	update_size()
 	$Area2D.area_entered.connect(_on_area_entered)
 	start_bubble_timer()
+
+func _process(delta):
+	# Gradually shrink, but don't go below base size
+	if current_size > 1.0:
+		current_size = max(1.0, current_size - shrink_rate * delta)
+		update_size()
 
 func take_damage():
 	# In this case, "damage" is actually feeding and growing
