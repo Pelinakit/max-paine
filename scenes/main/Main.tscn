@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://yylo042ca6ml" path="res://scenes/ui/HUD.tscn" id="5_slwnl"]
 [ext_resource type="PackedScene" uid="uid://cowatosd5txg7" path="res://scenes/ui/PauseMenu.tscn" id="6_d4hnj"]
 [ext_resource type="AudioStream" uid="uid://dsb5056h8csfn" path="res://assets/sounds/French Gypsy.mp3" id="8_tubxc"]
+[ext_resource type="Script" path="res://scenes/main/SFX.gd" id="9_hbj00"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_floor"]
 size = Vector2(2000, 50)
@@ -65,3 +66,8 @@ max_distance = 6000.0
 [node name="HUD" parent="UI" instance=ExtResource("5_slwnl")]
 
 [node name="PauseMenu" parent="UI" instance=ExtResource("6_d4hnj")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+autoplay = true
+playback_type = 1
+script = ExtResource("9_hbj00")
