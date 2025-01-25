@@ -22,11 +22,9 @@ theme_override_font_sizes/font_size = 24
 text = "Points/sec: 0"
 
 [node name="PlayerHealth" type="ProgressBar" parent="."]
-layout_mode = 0
 offset_right = 4.0
 offset_bottom = 27.0
 
 [node name="AmmoCount" type="Label" parent="."]
-layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0

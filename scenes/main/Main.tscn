@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dx8qs4h1npea3"]
+[gd_scene load_steps=10 format=3 uid="uid://dx8qs4h1npea3"]
 
 [ext_resource type="Script" path="res://scripts/main/Main.gd" id="1_2xc4p"]
 [ext_resource type="Texture2D" uid="uid://sdmp4jtbq3nw" path="res://assets/sprites/bg.jpg" id="1_c23kv"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://lxi8o2c6m1bt" path="res://scenes/player/Player.tscn" id="4_oaf4k"]
 [ext_resource type="PackedScene" uid="uid://yylo042ca6ml" path="res://scenes/ui/HUD.tscn" id="5_slwnl"]
 [ext_resource type="PackedScene" uid="uid://cowatosd5txg7" path="res://scenes/ui/PauseMenu.tscn" id="6_d4hnj"]
+[ext_resource type="AudioStream" uid="uid://dsb5056h8csfn" path="res://assets/sounds/French Gypsy.mp3" id="8_tubxc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_floor"]
 size = Vector2(2000, 50)
@@ -20,6 +21,7 @@ metadata/_edit_vertical_guides_ = [-697.0]
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Background"]
 
 [node name="Sprite2D" type="Sprite2D" parent="Background"]
+position = Vector2(13, 1)
 texture = ExtResource("1_c23kv")
 
 [node name="Floor" type="StaticBody2D" parent="Background" groups=["floor"]]
@@ -46,6 +48,13 @@ shape = SubResource("RectangleShape2D_floor")
 position = Vector2(5, 535)
 left_limit = -515
 right_limit = 500
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="GameplayLayer/Player"]
+position = Vector2(-1, -343)
+stream = ExtResource("8_tubxc")
+volume_db = -20.0
+autoplay = true
+max_distance = 6000.0
 
 [node name="Effects" type="Node2D" parent="."]
 
