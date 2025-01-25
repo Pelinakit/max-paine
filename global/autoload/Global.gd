@@ -19,8 +19,8 @@ func calculate_score_rate(yeasts: Array) -> float:
 	var base_size_count = 0
 	
 	for node in yeasts:
-		# Only count nodes that are yeasts
-		if node.has_method("take_damage"):
+		# Only count nodes that are yeasts (have both take_damage and current_size)
+		if node.has_method("take_damage") and "current_size" in node:
 			# Count yeasts at base size for penalty
 			if node.current_size <= 1.0:
 				base_size_count += 1

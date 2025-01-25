@@ -20,6 +20,8 @@ var phase_offset: float
 func _ready():
 	if !body_entered.is_connected(_on_body_entered):
 		body_entered.connect(_on_body_entered)
+	if !area_entered.is_connected(_on_area_entered):
+		area_entered.connect(_on_area_entered)
 	# Speed is inversely proportional to scale
 	# Smaller bubbles move faster
 	speed = base_speed / scale.x
@@ -69,10 +71,20 @@ func _on_body_entered(body: Node2D):
 func attach_to_player(player: CharacterBody2D):
 	attached_to_player = true
 	player_ref = player
+	# Disable collision layer when attached
+	collision_layer = 0
 	# Start despawn timer
 	var timer = get_tree().create_timer(2.0)
 	timer.timeout.connect(queue_free)
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
+	if !attached_to_player:
+		queue_free()
+
+func _on_area_entered(area: Area2D):
+	if area.is_in_group("sugar"):
+		take_damage()
+
+func take_damage():
 	if !attached_to_player:
 		queue_free()
