@@ -6,9 +6,21 @@ extends CharacterBody2D
 var current_size = 1.0
 
 var Bubble = preload("res://scenes/objects/Bubble.tscn")
+var bubble_sounds = []
 var can_spawn_bubble = true
 
 func _ready():
+	# Load all bubble sounds from directory
+	var dir = DirAccess.open("res://assets/sounds/bubble")
+	if dir:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			if file_name.ends_with(".wav"):
+				bubble_sounds.append(load("res://assets/sounds/bubble/" + file_name))
+			file_name = dir.get_next()
+		dir.list_dir_end()
+	
 	update_size()
 	$Area2D.area_entered.connect(_on_area_entered)
 	start_bubble_timer()
@@ -52,6 +64,14 @@ func spawn_bubble():
 	# Spawn bubble from top of yeast (remember our pivot is at bottom)
 	bubble.position = position + Vector2(0, -$CollisionShape2D.shape.radius * 2 * current_size)
 	get_parent().add_child(bubble)
+	
+	# Play random bubble sound
+	var audio = AudioStreamPlayer.new()
+	audio.stream = bubble_sounds.pick_random()
+	audio.volume_db = -20.0
+	add_child(audio)
+	audio.play()
+	audio.finished.connect(func(): audio.queue_free())
 	
 	can_spawn_bubble = true
 	start_bubble_timer()

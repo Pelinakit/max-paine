@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://fnp4yflbo5uq"
+path="res://.godot/imported/Bubble 03.wav-2033a71097906c3cc888030dca8972b3.sample"
+
+[deps]
+
+source_file="res://assets/sounds/bubble/Bubble 03.wav"
+dest_files=["res://.godot/imported/Bubble 03.wav-2033a71097906c3cc888030dca8972b3.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
