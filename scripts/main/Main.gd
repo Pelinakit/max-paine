@@ -24,9 +24,8 @@ func setup_score_timer():
 
 func update_score():
 	var yeasts = enemies_container.get_children()
-	var score_rate = Global.calculate_score_rate(yeasts)
-	Global.score_per_second = score_rate
-	Global.player_score += score_rate
+	# Let Global handle both rate calculation and score update
+	Global.calculate_score_rate(yeasts)
 
 func spawn_yeasts():
 	# Calculate screen dimensions
