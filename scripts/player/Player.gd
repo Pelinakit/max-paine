@@ -13,6 +13,18 @@ var can_shoot = true
 
 func _ready():
 	$Camera2D.make_current()
+	
+	# Get collision shape height and set pivot point at bottom
+	var collision_height = $CollisionShape2D.shape.size.y
+	var offset = Vector2(0, -collision_height / 2)
+	
+	# Move all child nodes up by half the collision height
+	for child in get_children():
+		if child is CollisionShape2D:
+			# Keep the x offset for collision shape
+			child.position = Vector2(child.position.x, offset.y)
+		else:
+			child.position = offset
 
 func _physics_process(delta):
 	var input_direction = 0.0

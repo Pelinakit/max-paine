@@ -17,7 +17,12 @@ func spawn_yeasts():
 	# Calculate screen dimensions
 	var viewport_size = get_viewport_rect().size
 	var spawn_width = viewport_size.x * 0.8 # Use 80% of screen width
-	var spawn_y = viewport_size.y * 1.75
+	
+	# Get floor position for spawning yeasts
+	var bg_sprite = $Background/Sprite2D
+	var spawn_y = 0
+	if bg_sprite and bg_sprite.texture:
+		spawn_y = bg_sprite.texture.get_height() / 2 - 80 # Same as floor position
 	
 	# Adjust properties based on level
 	var base_size = 1.0 + (Global.level_number - 1) * 0.1 # Slightly bigger each level
