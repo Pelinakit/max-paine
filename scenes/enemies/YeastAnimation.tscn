@@ -1,0 +1,134 @@
+[gd_scene load_steps=7 format=3 uid="uid://dpph8mhi1wqxl"]
+
+[ext_resource type="Texture2D" uid="uid://c2by5v5yv6o3d" path="res://assets/sprites/y_tail.png" id="1_x8a35"]
+[ext_resource type="Texture2D" uid="uid://c3j8iytpepjs4" path="res://assets/sprites/y_torso.png" id="2_1etqr"]
+[ext_resource type="Texture2D" uid="uid://di0721lc1evm" path="res://assets/sprites/y_head.png" id="3_c61xx"]
+
+[sub_resource type="Animation" id="Animation_6n8ae"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("YHead:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.966667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(167, 154), Vector2(166, 159), Vector2(167, 154)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("YHead:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.966667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.00742181, -0.0816962, -0.00742181]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("YTail:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.966667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(119, 223), Vector2(114, 224), Vector2(119, 223)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("YTorso:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.966667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.06844, 0.957542), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_cody3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("YHead:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(167, 154)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("YHead:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.00742181]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("YTail:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(119, 223)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("YTorso:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k6bey"]
+_data = {
+"RESET": SubResource("Animation_cody3"),
+"idle": SubResource("Animation_6n8ae")
+}
+
+[node name="YeastAnimation" type="Node2D"]
+
+[node name="YTail" type="Sprite2D" parent="."]
+position = Vector2(119, 223)
+texture = ExtResource("1_x8a35")
+
+[node name="YTorso" type="Sprite2D" parent="."]
+position = Vector2(155, 198)
+texture = ExtResource("2_1etqr")
+
+[node name="YHead" type="Sprite2D" parent="."]
+position = Vector2(167, 154)
+rotation = -0.00742181
+texture = ExtResource("3_c61xx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_k6bey")
+}
