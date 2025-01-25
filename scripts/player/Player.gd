@@ -4,16 +4,20 @@ extends CharacterBody2D
 @export var gravity = 200.0
 @export var drag_coefficient = 0.2
 @export var terminal_velocity = 300.0
+@export var terminal_velocity_with_bubbles = 100.0 # Lower terminal velocity when rising with bubbles
 @export var left_limit = -1000
 @export var right_limit = 1000
 @export var slope_slide_speed = 200.0
 @export var wall_bounce = 0.3
+@export var base_lift_per_bubble = -400.0 # Much stronger lift force
+@export var diminishing_factor = 0.05 # Even less diminishing returns
 
 var Sugar = preload("res://scenes/objects/Sugar.tscn")
 var slide_whistle = preload("res://assets/sounds/slide_whistle.wav")
 @export var shoot_cooldown = 0.3
 var can_shoot = true
 var wall_normal = Vector2.ZERO
+var attached_bubbles = []
 
 func _ready():
 	$Camera2D.make_current()
@@ -29,6 +33,28 @@ func _ready():
 			child.position = Vector2(child.position.x, offset.y)
 		else:
 			child.position = offset
+
+func add_bubble(bubble):
+	attached_bubbles.append(bubble)
+
+func remove_bubble(bubble):
+	attached_bubbles.erase(bubble)
+
+func get_current_lift():
+	var bubble_count = attached_bubbles.size()
+	if bubble_count == 0:
+		return 0.0
+	
+	# Calculate diminishing returns for each additional bubble
+	# Each subsequent bubble provides less lift
+	var total_lift = 0.0
+	for i in range(bubble_count):
+		var bubble = attached_bubbles[i]
+		var time_factor = bubble.get_lift_factor() # Get time-based diminishing factor
+		var stack_factor = 1.0 / (1.0 + i * diminishing_factor) # Stack-based diminishing factor
+		total_lift += base_lift_per_bubble * time_factor * stack_factor
+	
+	return total_lift
 
 func _physics_process(delta):
 	var input_direction = 0.0
@@ -48,10 +74,19 @@ func _physics_process(delta):
 	var target_speed = input_direction * speed
 	velocity.x = lerp(velocity.x, target_speed, drag_coefficient)
 	
-	# Apply gravity with drag and terminal velocity
-	velocity.y += gravity * delta
-	velocity.y = lerp(velocity.y, terminal_velocity, drag_coefficient * delta)
-	velocity.y = minf(velocity.y, terminal_velocity)
+	# Apply gravity with lift from bubbles
+	var current_lift = get_current_lift()
+	velocity.y += (gravity + current_lift) * delta
+	
+	# Use different terminal velocity based on movement direction
+	var current_terminal = terminal_velocity
+	if current_lift != 0 and velocity.y < 0: # If we have bubbles and are moving upward
+		current_terminal = terminal_velocity_with_bubbles
+	
+	# Only apply terminal velocity when moving downward or if we're not rising with bubbles
+	if velocity.y > 0 or current_lift == 0:
+		velocity.y = lerp(velocity.y, current_terminal, drag_coefficient * delta)
+		velocity.y = minf(velocity.y, current_terminal)
 	
 	var collision = move_and_collide(velocity * delta)
 	if collision:

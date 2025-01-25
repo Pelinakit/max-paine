@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://dx8qs4h1npea3"]
 
 [ext_resource type="Script" path="res://scripts/main/Main.gd" id="1_2xc4p"]
-[ext_resource type="Texture2D" uid="uid://sdmp4jtbq3nw" path="res://assets/sprites/bg.jpg" id="1_c23kv"]
+[ext_resource type="Texture2D" uid="uid://dcfss7unajnsq" path="res://assets/sprites/bg.jpg" id="1_c23kv"]
 [ext_resource type="PackedScene" uid="uid://ct8u5bf1k3o20" path="res://scenes/objects/SugarGun.tscn" id="2_h2v67"]
 [ext_resource type="PackedScene" uid="uid://bwnm2xnqpkrun" path="res://scenes/objects/Rope.tscn" id="3_fa8ux"]
 [ext_resource type="PackedScene" uid="uid://lxi8o2c6m1bt" path="res://scenes/player/Player.tscn" id="4_oaf4k"]
