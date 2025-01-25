@@ -12,3 +12,9 @@ func _on_body_entered(body):
 	if body.has_method("take_damage"):
 		body.take_damage()
 	queue_free()
+
+func _on_area_entered(area: Area2D):
+	var parent = area.get_parent()
+	if parent and parent.has_method("take_damage"):
+		parent.take_damage()
+	queue_free()

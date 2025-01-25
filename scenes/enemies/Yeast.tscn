@@ -1,9 +1,28 @@
-[gd_scene format=3 uid="uid://b4trkmgk4vkp5"]
+[gd_scene load_steps=5 format=3 uid="uid://b4trkmgk4vkp5"]
+
+[ext_resource type="Script" path="res://scripts/enemies/Yeast.gd" id="1_8ykpw"]
+[ext_resource type="Texture2D" uid="uid://cxrbe2lw7lhrw" path="res://assets/sprites/Yeast_Guy.png" id="2_twxh7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1"]
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2"]
+radius = 18.0
 
 [node name="Enemy" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_8ykpw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.8, 0.6, 0.4, 1)
+texture = ExtResource("2_twxh7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_2")
