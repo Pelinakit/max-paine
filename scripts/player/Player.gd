@@ -9,7 +9,7 @@ extends CharacterBody2D
 
 var Sugar = preload("res://scenes/objects/Sugar.tscn")
 var slide_whistle = preload("res://assets/sounds/slide_whistle.wav")
-@export var shoot_cooldown = 0.2
+@export var shoot_cooldown = 0.3
 var can_shoot = true
 
 func _ready():

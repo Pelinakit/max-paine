@@ -4,6 +4,8 @@ extends Area2D
 @export var lift_force = -400.0 # Force to counteract player gravity
 @export var wobble_amplitude = 30.0 # Base amplitude for wobble
 @export var wobble_frequency = 2.0 # Base frequency for wobble
+@export var drag_coefficient = 0.5 # How quickly lift force diminishes with speed
+@export var min_lift_factor = 0.4 # Minimum lift force multiplier (0.0 to 1.0)
 
 var speed = base_speed
 var attached_to_player = false
@@ -33,8 +35,14 @@ func _physics_process(delta):
 	if attached_to_player and player_ref:
 		# Follow player position
 		position = player_ref.position
-		# Apply lift force to player
-		player_ref.velocity.y += lift_force * delta
+		# Apply lift force to player with drag
+		var current_velocity = player_ref.velocity.y
+		# Calculate lift factor with a minimum value to ensure upward movement
+		var velocity_factor = max(
+			min_lift_factor,
+			1.0 / (1.0 + drag_coefficient * abs(min(current_velocity, 0)))
+		)
+		player_ref.velocity.y += lift_force * velocity_factor * delta
 	else:
 		# Update time for wobble
 		time_elapsed += delta
