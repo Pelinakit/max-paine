@@ -14,7 +14,14 @@ func _on_body_entered(body):
 	queue_free()
 
 func _on_area_entered(area: Area2D):
+	# Check the area itself first
+	if area.has_method("take_damage"):
+		area.take_damage()
+		queue_free()
+		return
+	
+	# If area doesn't have take_damage, check its parent
 	var parent = area.get_parent()
 	if parent and parent.has_method("take_damage"):
 		parent.take_damage()
-	queue_free()
+		queue_free()
