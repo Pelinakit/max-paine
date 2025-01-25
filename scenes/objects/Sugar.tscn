@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://crcsaiwaiag35"]
+
+[ext_resource type="Script" path="res://scripts/objects/Sugar.gd" id="1_v5djt"]
+[ext_resource type="Texture2D" uid="uid://j6g5rx7w1x4y" path="res://assets/sprites/sugar.png" id="2_nmd4m"]
+
+[node name="Sugar" type="Area2D"]
+script = ExtResource("1_v5djt")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_nmd4m")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
