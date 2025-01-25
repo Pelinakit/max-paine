@@ -6,17 +6,20 @@ extends CharacterBody2D
 @export var terminal_velocity = 300.0
 @export var left_limit = -1000
 @export var right_limit = 1000
+@export var slope_slide_speed = 200.0
+@export var wall_bounce = 0.3
 
 var Sugar = preload("res://scenes/objects/Sugar.tscn")
 var slide_whistle = preload("res://assets/sounds/slide_whistle.wav")
 @export var shoot_cooldown = 0.3
 var can_shoot = true
+var wall_normal = Vector2.ZERO
 
 func _ready():
 	$Camera2D.make_current()
 	
 	# Get collision shape height and set pivot point at bottom
-	var collision_height = $CollisionShape2D.shape.size.y
+	var collision_height = $CollisionShape2D.shape.height
 	var offset = Vector2(0, -collision_height / 2)
 	
 	# Move all child nodes up by half the collision height
@@ -36,6 +39,10 @@ func _physics_process(delta):
 		input_direction += 1.0
 	else:
 		input_direction = 0.0
+	
+	# Reset wall normal if not touching wall
+	if wall_normal != Vector2.ZERO and input_direction * wall_normal.x > 0:
+		wall_normal = Vector2.ZERO
 		
 	# Apply horizontal movement with drag
 	var target_speed = input_direction * speed
@@ -51,6 +58,20 @@ func _physics_process(delta):
 		var collider = collision.get_collider()
 		if collider.is_in_group("floor") or collider.is_in_group("ceiling"):
 			game_over()
+		elif collider.is_in_group("bottle_wall"):
+			wall_normal = collision.get_normal()
+			
+			# Only apply slide if moving into the wall
+			if input_direction * wall_normal.x < 0:
+				# Calculate slide direction (perpendicular to normal, pointing downward)
+				var slide_direction = Vector2(-wall_normal.y, wall_normal.x) * sign(wall_normal.x)
+				velocity = slide_direction * slope_slide_speed
+				
+				# Add slight horizontal push away from wall
+				velocity.x += wall_normal.x * speed * wall_bounce
+			else:
+				# Just bounce off the wall if not actively moving into it
+				velocity = velocity.bounce(wall_normal) * wall_bounce
 	
 	# Only clamp horizontal position
 	position.x = clamp(position.x, left_limit, right_limit)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dx8qs4h1npea3"]
+[gd_scene load_steps=13 format=3 uid="uid://dx8qs4h1npea3"]
 
 [ext_resource type="Script" path="res://scripts/main/Main.gd" id="1_2xc4p"]
 [ext_resource type="Texture2D" uid="uid://sdmp4jtbq3nw" path="res://assets/sprites/bg.jpg" id="1_c23kv"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cowatosd5txg7" path="res://scenes/ui/PauseMenu.tscn" id="6_d4hnj"]
 [ext_resource type="AudioStream" uid="uid://dsb5056h8csfn" path="res://assets/sounds/French Gypsy.mp3" id="8_tubxc"]
 [ext_resource type="Script" path="res://scenes/main/SFX.gd" id="9_hbj00"]
+[ext_resource type="Script" path="res://scripts/objects/BottleWall.gd" id="10_bottle"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_floor"]
 size = Vector2(2000, 50)
@@ -38,6 +39,20 @@ shape = SubResource("RectangleShape2D_floor")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Ceiling"]
 position = Vector2(-9, -59)
 shape = SubResource("RectangleShape2D_up6o5")
+
+[node name="BottleWallLeft" type="StaticBody2D" parent="Background"]
+script = ExtResource("10_bottle")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Background/BottleWallLeft"]
+position = Vector2(-501, 262)
+polygon = PackedVector2Array(-10, -8, 292, -2631, 273, -1774, 247, -1087)
+
+[node name="BottleWallRight" type="StaticBody2D" parent="Background"]
+scale = Vector2(-1, 1)
+script = ExtResource("10_bottle")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Background/BottleWallRight"]
+polygon = PackedVector2Array(-553, 293, -201, -2379, -218, -1256, -292, -669)
 
 [node name="GameplayLayer" type="Node2D" parent="."]
 

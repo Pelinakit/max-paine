@@ -5,8 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://bwnm2xnqpkrun" path="res://scenes/objects/Rope.tscn" id="1_nstsc"]
 [ext_resource type="PackedScene" uid="uid://ct8u5bf1k3o20" path="res://scenes/objects/SugarGun.tscn" id="2_ajw2n"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xrin8"]
-size = Vector2(63, 213)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xrin8"]
+radius = 31.5
+height = 213.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_8ykpw")
@@ -16,7 +17,7 @@ texture = ExtResource("1_48efd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-3.5, -16.5)
-shape = SubResource("RectangleShape2D_xrin8")
+shape = SubResource("CapsuleShape2D_xrin8")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
