@@ -1,13 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://lxi8o2c6m1bt"]
+[gd_scene load_steps=5 format=3 uid="uid://lxi8o2c6m1bt"]
 
+[ext_resource type="Texture2D" uid="uid://bhfb84v18smti" path="res://assets/sprites/diver_asset.png" id="1_48efd"]
 [ext_resource type="PackedScene" uid="uid://bwnm2xnqpkrun" path="res://scenes/objects/Rope.tscn" id="1_nstsc"]
 [ext_resource type="PackedScene" uid="uid://ct8u5bf1k3o20" path="res://scenes/objects/SugarGun.tscn" id="2_ajw2n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xrin8"]
+size = Vector2(63, 213)
 
 [node name="Player" type="CharacterBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_48efd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3.5, -16.5)
+shape = SubResource("RectangleShape2D_xrin8")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
