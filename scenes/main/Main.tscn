@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bwnm2xnqpkrun" path="res://scenes/objects/Rope.tscn" id="3_fa8ux"]
 [ext_resource type="PackedScene" uid="uid://lxi8o2c6m1bt" path="res://scenes/player/Player.tscn" id="4_oaf4k"]
 [ext_resource type="PackedScene" uid="uid://yylo042ca6ml" path="res://scenes/ui/HUD.tscn" id="5_slwnl"]
-[ext_resource type="PackedScene" uid="uid://cowatosd5txg7" path="res://scenes/ui/PauseMenu.tscn" id="6_d4hnj"]
+[ext_resource type="PackedScene" path="res://scenes/ui/PauseMenu.tscn" id="6_d4hnj"]
 [ext_resource type="AudioStream" uid="uid://dsb5056h8csfn" path="res://assets/sounds/French Gypsy.mp3" id="8_tubxc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_floor"]

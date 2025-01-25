@@ -2,7 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://b5b8f4mn203jq" path="res://assets/fonts/CALIFB.TTF" id="1_naksn"]
 [ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_ve478"]
-[ext_resource type="Texture2D" uid="uid://daiw116h1o24t" path="res://assets/sprites/manu_bg.jpg" id="2_mycuw"]
+[ext_resource type="Texture2D" uid="uid://2423wg5pfc67" path="res://assets/sprites/manu_bg.jpg" id="2_mycuw"]
 [ext_resource type="Theme" uid="uid://by7im2fbqio5t" path="res://assets/themes/main_menu_button.tres" id="3_hh3rd"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r7m7a"]
@@ -28,24 +28,24 @@ script = ExtResource("1_ve478")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
+offset_right = 728.0
+offset_bottom = 1289.0
 texture = ExtResource("2_mycuw")
-expand_mode = 2
+expand_mode = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
+anchor_bottom = 0.5
 offset_left = -275.0
-offset_top = -419.0
+offset_top = 40.0
 offset_right = 275.0
-offset_bottom = -207.0
+offset_bottom = 272.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 
 [node name="StartButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
