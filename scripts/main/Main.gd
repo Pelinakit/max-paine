@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var enemies_container = $GameplayLayer/Enemies
 var Yeast = preload("res://scenes/enemies/Yeast.tscn")
+var score_update_timer: Timer
 
 func _ready():
 	# Position floor at bottom of background plus 20px
@@ -12,6 +13,20 @@ func _ready():
 		floor_node.position.y = bg_height / 2 - 40
 	
 	spawn_yeasts()
+	setup_score_timer()
+
+func setup_score_timer():
+	score_update_timer = Timer.new()
+	add_child(score_update_timer)
+	score_update_timer.wait_time = 1.0 # Update score every second
+	score_update_timer.timeout.connect(update_score)
+	score_update_timer.start()
+
+func update_score():
+	var yeasts = enemies_container.get_children()
+	var score_rate = Global.calculate_score_rate(yeasts)
+	Global.score_per_second = score_rate
+	Global.player_score += score_rate
 
 func spawn_yeasts():
 	# Calculate screen dimensions
