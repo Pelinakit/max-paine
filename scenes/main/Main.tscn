@@ -1,16 +1,22 @@
-[gd_scene load_steps=7 format=3 uid="uid://dx8qs4h1npea3"]
+[gd_scene load_steps=8 format=3 uid="uid://dx8qs4h1npea3"]
 
-[ext_resource type="PackedScene" uid="uid://b4trkmgk4vkp5" path="res://scenes/enemies/Yeast.tscn" id="1_seh74"]
+[ext_resource type="Texture2D" uid="uid://sdmp4jtbq3nw" path="res://assets/sprites/bg.jpg" id="1_c23kv"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/Yeast.tscn" id="1_seh74"]
 [ext_resource type="PackedScene" uid="uid://ct8u5bf1k3o20" path="res://scenes/objects/SugarGun.tscn" id="2_h2v67"]
 [ext_resource type="PackedScene" uid="uid://bwnm2xnqpkrun" path="res://scenes/objects/Rope.tscn" id="3_fa8ux"]
 [ext_resource type="PackedScene" uid="uid://lxi8o2c6m1bt" path="res://scenes/player/Player.tscn" id="4_oaf4k"]
-[ext_resource type="PackedScene" uid="uid://yylo042ca6ml" path="res://scenes/ui/HUD.tscn" id="5_slwnl"]
-[ext_resource type="PackedScene" uid="uid://cowatosd5txg7" path="res://scenes/ui/PauseMenu.tscn" id="6_d4hnj"]
+[ext_resource type="PackedScene" path="res://scenes/ui/HUD.tscn" id="5_slwnl"]
+[ext_resource type="PackedScene" path="res://scenes/ui/PauseMenu.tscn" id="6_d4hnj"]
 
 [node name="Main" type="Node2D"]
 metadata/_edit_vertical_guides_ = [-697.0]
 
 [node name="Background" type="Node2D" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Background"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
+texture = ExtResource("1_c23kv")
 
 [node name="GameplayLayer" type="Node2D" parent="."]
 
