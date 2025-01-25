@@ -24,14 +24,9 @@ metadata/_edit_vertical_guides_ = [-697.0]
 position = Vector2(13, 1)
 texture = ExtResource("1_c23kv")
 
-[node name="Floor" type="StaticBody2D" parent="Background" groups=["floor"]]
+[node name="Floor" type="StaticBody2D" parent="Background"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Floor"]
-shape = SubResource("RectangleShape2D_floor")
-
-[node name="Ceiling" type="StaticBody2D" parent="Background" groups=["ceiling"]]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Ceiling"]
 shape = SubResource("RectangleShape2D_floor")
 
 [node name="GameplayLayer" type="Node2D" parent="."]
