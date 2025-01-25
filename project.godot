@@ -23,6 +23,8 @@ Global="*res://global/autoload/Global.gd"
 
 window/size/viewport_width=720
 window/size/viewport_height=1280
+window/size/resizable=false
+window/size/always_on_top=true
 
 [input]
 
