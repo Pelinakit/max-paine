@@ -20,6 +20,51 @@ func _ready():
 	
 	spawn_yeasts()
 	setup_score_timer()
+	show_get_ready()
+
+func show_get_ready():
+	# Create a temporary label
+	var get_ready_label = Label.new()
+	get_ready_label.text = "Get Ready!"
+	get_ready_label.position = Vector2(0, 0)
+	get_ready_label.scale = Vector2(8, 8)
+	get_ready_label.add_theme_font_override("font", load("res://assets/fonts/CALIFB.ttf"))
+	# Set anchor point to center
+	get_ready_label.pivot_offset = get_ready_label.size / 2
+	get_ready_label.z_index = 1000
+	add_child(get_ready_label)
+
+	# Create instructions label
+	var instructions_label = Label.new()
+	instructions_label.text = "<- A     [SPACE] Shoot     D ->"
+	instructions_label.position = Vector2(0, get_viewport_rect().size.y / 1.2)
+	instructions_label.scale = Vector2(6, 6)
+	instructions_label.add_theme_font_override("font", load("res://assets/fonts/CALIFB.ttf"))
+	instructions_label.pivot_offset = instructions_label.size / 2
+	instructions_label.z_index = 1000
+	add_child(instructions_label)
+
+	# Freeze only the player by disabling physics and input processing
+	var player = $GameplayLayer/Player
+	player.set_physics_process(false)
+	player.set_process_input(false)
+	player.set_process_unhandled_input(false)
+	
+	# Wait for 3 seconds
+	var get_ready_timer = get_tree().create_timer(3.0)
+	get_ready_timer.timeout.connect(func():
+		# Unfreeze the player and remove the label
+		player.set_physics_process(true)
+		player.set_process_input(true)
+		player.set_process_unhandled_input(true)
+		get_ready_label.queue_free()
+	)
+
+	# Remove instructions label after 6 seconds
+	var instructions_timer = get_tree().create_timer(6.0)
+	instructions_timer.timeout.connect(func():
+		instructions_label.queue_free()
+	)
 
 func setup_score_timer():
 	score_update_timer = Timer.new()

@@ -10,5 +10,5 @@ func _process(_delta):
 	update_display()
 
 func update_display():
-	score_label.text = "Score: %d" % Global.player_score
+	score_label.text = "Score: %d/%d" % [Global.player_score, Global.WIN_SCORE]
 	score_rate_label.text = "Points/sec: %d" % Global.score_per_second
