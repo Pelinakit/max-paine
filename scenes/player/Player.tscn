@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bhfb84v18smti" path="res://assets/sprites/diver_asset.png" id="1_48efd"]
 [ext_resource type="PackedScene" uid="uid://bwnm2xnqpkrun" path="res://scenes/objects/Rope.tscn" id="1_nstsc"]
 [ext_resource type="PackedScene" uid="uid://ct8u5bf1k3o20" path="res://scenes/objects/SugarGun.tscn" id="2_ajw2n"]
-[ext_resource type="PackedScene" path="res://scenes/player/AnimatedPlayer.tscn" id="5_jq3t4"]
+[ext_resource type="PackedScene" uid="uid://c1snigun588ct" path="res://scenes/player/AnimatedPlayer.tscn" id="5_jq3t4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xrin8"]
 radius = 31.5

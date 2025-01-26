@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/enemies/Yeast.gd" id="1_8ykpw"]
 [ext_resource type="Texture2D" uid="uid://cxrbe2lw7lhrw" path="res://assets/sprites/Yeast_Guy.png" id="2_twxh7"]
-[ext_resource type="PackedScene" path="res://scenes/enemies/YeastAnimation.tscn" id="3_e0qol"]
+[ext_resource type="PackedScene" uid="uid://dpph8mhi1wqxl" path="res://scenes/enemies/YeastAnimation.tscn" id="3_e0qol"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1"]
 radius = 16.0
