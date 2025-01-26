@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://lxi8o2c6m1bt"]
+[gd_scene load_steps=7 format=3 uid="uid://lxi8o2c6m1bt"]
 
 [ext_resource type="Script" path="res://scripts/player/Player.gd" id="1_8ykpw"]
 [ext_resource type="Texture2D" uid="uid://bhfb84v18smti" path="res://assets/sprites/diver_asset.png" id="1_48efd"]
 [ext_resource type="PackedScene" uid="uid://bwnm2xnqpkrun" path="res://scenes/objects/Rope.tscn" id="1_nstsc"]
 [ext_resource type="PackedScene" uid="uid://ct8u5bf1k3o20" path="res://scenes/objects/SugarGun.tscn" id="2_ajw2n"]
+[ext_resource type="PackedScene" uid="uid://c1snigun588ct" path="res://scenes/player/AnimatedPlayer.tscn" id="5_jq3t4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xrin8"]
 radius = 31.5
@@ -13,6 +14,7 @@ height = 213.0
 script = ExtResource("1_8ykpw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("1_48efd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -25,3 +27,6 @@ zoom = Vector2(0.5, 0.5)
 [node name="Rope" parent="." instance=ExtResource("1_nstsc")]
 
 [node name="SugarGun" parent="." instance=ExtResource("2_ajw2n")]
+
+[node name="AnimatedPlayer" parent="." instance=ExtResource("5_jq3t4")]
+position = Vector2(6, -11)
