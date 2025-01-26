@@ -18,19 +18,26 @@ func reset_game():
 
 func transition_to_main_menu():
 	if player_score >= WIN_SCORE:
+		# Play victory sound
 		var audio = AudioStreamPlayer.new()
 		audio.stream = party_trumpet
 		audio.volume_db = -20.0
 		add_child(audio)
 		audio.play()
 		audio.finished.connect(func(): audio.queue_free())
-	
-	var timer = get_tree().create_timer(3.0)
-	timer.timeout.connect(func():
-		get_tree().paused = false
-		reset_game()
-		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
-	)
+		
+		# Wait for sound to play, then show win screen
+		var timer = get_tree().create_timer(2.0)
+		timer.timeout.connect(func():
+			get_tree().change_scene_to_file("res://scenes/ui/WinMenu.tscn")
+		)
+	else:
+		# Wait for 2 seconds (for slide whistle and player widening)
+		var timer = get_tree().create_timer(2.0)
+		timer.timeout.connect(func():
+			# Then show lose screen
+			get_tree().change_scene_to_file("res://scenes/ui/LoseMenu.tscn")
+		)
 
 func calculate_score_rate(yeasts: Array) -> float:
 	var total = 0.0
