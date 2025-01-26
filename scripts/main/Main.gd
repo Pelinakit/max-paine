@@ -10,7 +10,7 @@ func _ready():
 	var floor_node = $Background/Floor
 	if bg_sprite and bg_sprite.texture:
 		var bg_height = bg_sprite.texture.get_height()
-		floor_node.position.y = bg_height / 4 - 40
+		floor_node.position.y = bg_height / 4 - 160
 
 	# Position ceiling at top of background minus 40px
 	var ceiling_node = $Background/Ceiling
@@ -87,7 +87,7 @@ func spawn_yeasts():
 	var bg_sprite = $Background/Sprite2D
 	var spawn_y = 0
 	if bg_sprite and bg_sprite.texture:
-		spawn_y = bg_sprite.texture.get_height() / 4 - 80 # Same as floor position
+		spawn_y = bg_sprite.texture.get_height() / 4 - 200 # Same as floor position
 	
 	# Adjust properties based on level
 	var base_size = 1.0 + (Global.level_number - 1) * 0.1 # Slightly bigger each level
