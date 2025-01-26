@@ -28,6 +28,7 @@ func transition_to_main_menu():
 	var timer = get_tree().create_timer(3.0)
 	timer.timeout.connect(func():
 		get_tree().paused = false
+		reset_game()
 		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 	)
 
