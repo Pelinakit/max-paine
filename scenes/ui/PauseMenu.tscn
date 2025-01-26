@@ -1,23 +1,41 @@
-[gd_scene load_steps=3 format=3 uid="uid://cowatosd5txg7"]
+[gd_scene load_steps=4 format=3 uid="uid://cowatosd5txg7"]
 
 [ext_resource type="Script" path="res://scenes/ui/pause_menu.gd" id="1_cdgpj"]
 [ext_resource type="Texture2D" uid="uid://xux1d4tp16wg" path="res://assets/sprites/pause_manu_bg.png" id="2_fkj8t"]
+[ext_resource type="FontFile" uid="uid://b5b8f4mn203jq" path="res://assets/fonts/CALIFB.TTF" id="3_gyreh"]
 
 [node name="PauseMenu" type="CanvasLayer"]
 script = ExtResource("1_cdgpj")
 
 [node name="Panel" type="TextureRect" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -4.0
+offset_top = -108.0
+offset_right = 927.0
+offset_bottom = 1734.0
+rotation = 0.00255902
 texture = ExtResource("2_fkj8t")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 53.0
+offset_top = 390.0
+offset_right = 736.0
+offset_bottom = 1162.0
+rotation = -0.129615
 
-[node name="Resume" type="Button" parent="Panel/VBoxContainer"]
+[node name="Resume" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.533333, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_gyreh")
+theme_override_font_sizes/font_size = 123
+text = "RESUME"
+autowrap_mode = 2
 
-[node name="Quit" type="Button" parent="Panel/VBoxContainer"]
+[node name="Quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.533333, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_gyreh")
+theme_override_font_sizes/font_size = 99
+text = "QUIT"
+
+[connection signal="pressed" from="VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
