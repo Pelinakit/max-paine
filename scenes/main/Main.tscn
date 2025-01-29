@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dx8qs4h1npea3"]
+[gd_scene load_steps=15 format=3 uid="uid://dx8qs4h1npea3"]
 
 [ext_resource type="Script" path="res://scripts/main/Main.gd" id="1_2xc4p"]
 [ext_resource type="Texture2D" uid="uid://dcfss7unajnsq" path="res://assets/sprites/bg.jpg" id="1_c23kv"]
@@ -6,16 +6,24 @@
 [ext_resource type="PackedScene" uid="uid://bwnm2xnqpkrun" path="res://scenes/objects/Rope.tscn" id="3_fa8ux"]
 [ext_resource type="PackedScene" uid="uid://lxi8o2c6m1bt" path="res://scenes/player/Player.tscn" id="4_oaf4k"]
 [ext_resource type="PackedScene" uid="uid://yylo042ca6ml" path="res://scenes/ui/HUD.tscn" id="5_slwnl"]
-[ext_resource type="PackedScene" path="res://scenes/ui/PauseMenu.tscn" id="6_d4hnj"]
+[ext_resource type="PackedScene" uid="uid://cowatosd5txg7" path="res://scenes/ui/PauseMenu.tscn" id="6_d4hnj"]
 [ext_resource type="AudioStream" uid="uid://dsb5056h8csfn" path="res://assets/sounds/French Gypsy.mp3" id="8_tubxc"]
 [ext_resource type="Script" path="res://scenes/main/SFX.gd" id="9_hbj00"]
 [ext_resource type="Script" path="res://scripts/objects/BottleWall.gd" id="10_bottle"]
+[ext_resource type="Shader" path="res://assets/shaders/bottle_distort.gdshader" id="11_gfsuv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_floor"]
 size = Vector2(2000, 50)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_up6o5"]
 size = Vector2(1980, 50)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dl2a1"]
+shader = ExtResource("11_gfsuv")
+shader_parameter/wave_amplitude = 1.0
+shader_parameter/wave_frequency = 8.0
+shader_parameter/wave_speed = 1.0
+shader_parameter/water_tint = Color(0, 0.5, 0.7, 0.3)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_2xc4p")
@@ -45,14 +53,14 @@ script = ExtResource("10_bottle")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Background/BottleWallLeft"]
 position = Vector2(-501, 262)
-polygon = PackedVector2Array(-10, -8, 292, -2631, 273, -1774, 247, -1087)
+polygon = PackedVector2Array(-103, 30, 292, -2631, 273, -1774, 211, -1079)
 
 [node name="BottleWallRight" type="StaticBody2D" parent="Background"]
 scale = Vector2(-1, 1)
 script = ExtResource("10_bottle")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Background/BottleWallRight"]
-polygon = PackedVector2Array(-553, 293, -201, -2379, -218, -1256, -292, -669)
+polygon = PackedVector2Array(-592, 294, -201, -2379, -218, -1256, -292, -669)
 
 [node name="GameplayLayer" type="Node2D" parent="."]
 
@@ -89,3 +97,10 @@ visible = false
 autoplay = true
 playback_type = 1
 script = ExtResource("9_hbj00")
+
+[node name="ColorRect" type="Polygon2D" parent="."]
+z_index = 10
+material = SubResource("ShaderMaterial_dl2a1")
+position = Vector2(-33, 1096)
+scale = Vector2(1.09044, 0.959378)
+polygon = PackedVector2Array(553.907, -892.245, 593.34, -551.399, 587.838, 1112.18, 548.404, 1177.85, 502.551, 1210.16, 396.172, 1231.01, 16.5072, 1248.73, -339.314, 1236.22, -429.186, 1212.24, -488.795, 1178.89, -539.234, 1113.22, -543.819, -514.917, -508.97, -850.551, -454.864, -1109.05, -375.996, -1392.57, -161.403, -1389.44, -69.6969, -1311.27, 105.462, -1312.31, 207.256, -1382.15, 406.259, -1384.23, 517.224, -1097.59)
