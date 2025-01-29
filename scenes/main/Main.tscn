@@ -20,10 +20,10 @@ size = Vector2(1980, 50)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dl2a1"]
 shader = ExtResource("11_gfsuv")
-shader_parameter/wave_amplitude = 1.0
-shader_parameter/wave_frequency = 8.0
-shader_parameter/wave_speed = 1.0
-shader_parameter/water_tint = Color(0, 0.5, 0.7, 0.3)
+shader_parameter/wave_amplitude = 0.831
+shader_parameter/wave_frequency = 1.37
+shader_parameter/wave_speed = 1.365
+shader_parameter/water_tint = Color(0.329285, 0.526485, 0.152725, 0.3)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_2xc4p")
@@ -98,7 +98,7 @@ autoplay = true
 playback_type = 1
 script = ExtResource("9_hbj00")
 
-[node name="ColorRect" type="Polygon2D" parent="."]
+[node name="Wobble" type="Polygon2D" parent="."]
 z_index = 10
 material = SubResource("ShaderMaterial_dl2a1")
 position = Vector2(-33, 1096)
